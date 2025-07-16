@@ -75,9 +75,23 @@ struct PhotoCaptureSection: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("Take a Photo")
-                .font(.headline)
-                .foregroundColor(.primary)
+            HStack {
+                Text("Photo")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                
+                Spacer()
+                
+                Text("Required")
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(Color.red.opacity(0.1))
+                    )
+            }
             
             Button(action: {
                 showingImagePicker = true
@@ -88,8 +102,11 @@ struct PhotoCaptureSection: View {
                         .frame(height: 200)
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray.opacity(0.3), lineWidth: 2)
-                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [8]))
+                                .stroke(
+                                    capturedImage != nil ? Color.green.opacity(0.5) : Color.gray.opacity(0.3), 
+                                    lineWidth: 2
+                                )
+                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: capturedImage != nil ? [] : [8]))
                         )
                     
                     if let image = capturedImage {
@@ -99,14 +116,41 @@ struct PhotoCaptureSection: View {
                             .frame(height: 200)
                             .clipped()
                             .cornerRadius(12)
+                            .overlay(
+                                // Retake overlay
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Text("Tap to retake")
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 8)
+                                            .padding(.vertical, 4)
+                                            .background(
+                                                Capsule()
+                                                    .fill(Color.black.opacity(0.6))
+                                            )
+                                            .padding()
+                                    }
+                                }
+                            )
                     } else {
-                        VStack {
-                            Image(systemName: "camera.fill")
+                        VStack(spacing: 8) {
+                            Image(systemName: UIImagePickerController.isSourceTypeAvailable(.camera) ? "camera.fill" : "photo.on.rectangle")
                                 .font(.system(size: 40))
-                                .foregroundColor(.gray)
-                            Text("Tap to take photo")
+                                .foregroundColor(.indigo)
+                            
+                            Text(UIImagePickerController.isSourceTypeAvailable(.camera) ? "Tap to take photo" : "Tap to select photo")
+                                .font(.callout)
+                                .fontWeight(.medium)
+                                .foregroundColor(.primary)
+                            
+                            Text("High quality photos help authorities understand the issue better")
                                 .font(.caption)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
                         }
                     }
                 }
@@ -221,8 +265,18 @@ struct ImagePicker: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
-        picker.sourceType = .camera
+        
+        // Check if camera is available, fallback to photo library if not
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+            picker.cameraDevice = .rear
+            picker.cameraCaptureMode = .photo
+        } else {
+            picker.sourceType = .photoLibrary
+        }
+        
         picker.allowsEditing = false
+        picker.mediaTypes = ["public.image"]
         return picker
     }
     

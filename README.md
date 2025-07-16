@@ -2,6 +2,13 @@
 
 A SwiftUI-based iOS app for citizen-driven civic issue reporting, built as a Proof of Concept for transparent governance.
 
+## 🚀 Project Status
+
+✅ **BUILD READY** - Successfully compiles and runs on iOS devices  
+✅ **DEPLOYMENT READY** - Can be built as IPA for device installation  
+✅ **FEATURE COMPLETE** - Core civic issue reporting functionality implemented  
+✅ **PERMISSIONS CONFIGURED** - Camera and location access properly set up
+
 ## Features ✨
 
 ### Core Functionality
@@ -69,9 +76,15 @@ TheekKaro/
 
 - iOS 17.0+
 - Xcode 15.0+
-- Camera access permission
-- Location access permission
+- Camera access permission (automatically requested)
+- Location access permission (automatically requested)
 - Device storage for photos and data
+
+### Permissions Handling
+The app automatically requests necessary permissions on first use:
+- **Camera Access**: Required for photo capture during issue reporting
+- **Location Access**: Required for GPS tagging of issues and map functionality
+- Both permissions include user-friendly descriptions explaining their purpose
 
 ## Getting Started 🚀
 
@@ -93,6 +106,35 @@ TheekKaro/
    - Select category and add description
    - Save and see the pin appear on map
    - Tap pin to view details
+
+## Build & Deployment 📱
+
+### Development Build
+```bash
+# Build for device testing
+xcodebuild -scheme TheekKaro -configuration Release -sdk iphoneos build
+```
+
+### Create IPA for Device Installation
+```bash
+# Create archive
+xcodebuild -scheme TheekKaro -configuration Release -sdk iphoneos archive -archivePath ./TheekKaro.xcarchive
+
+# Export IPA (requires ExportOptions.plist)
+xcodebuild -exportArchive -archivePath ./TheekKaro.xcarchive -exportPath ./export -exportOptionsPlist ExportOptions.plist
+```
+
+### Installation Options
+- **Xcode**: Direct device installation via cable
+- **TestFlight**: For beta testing distribution  
+- **Enterprise**: Ad-hoc distribution for internal testing
+- **IPA**: Direct installation via Apple Configurator or similar tools
+
+### Build Requirements
+- **Xcode**: 15.0+ required
+- **iOS Target**: 18.0+ minimum
+- **Architecture**: arm64 (Apple Silicon compatible)
+- **Signing**: Apple Developer account needed for device deployment
 
 ## Data Storage 💾
 
@@ -123,6 +165,27 @@ TheekKaro/
 | Issue Creation | <30s | ✅ Fast |
 | Crash Rate | ≥99% | ✅ Stable |
 
+## Troubleshooting 🔧
+
+### Camera Issues
+If the app crashes when taking photos:
+1. **Check Permissions**: Go to Settings > Privacy & Security > Camera and ensure TheekKaro has access
+2. **Restart App**: Force close and reopen the app
+3. **Device Storage**: Ensure sufficient storage space for photos
+4. **Simulator**: Camera functionality requires a physical device
+
+### Location Issues
+If location isn't working:
+1. **Check Permissions**: Go to Settings > Privacy & Security > Location Services
+2. **Enable Location**: Ensure both Location Services and TheekKaro are enabled
+3. **Precision**: Set to "Precise Location" for accurate issue mapping
+
+### Build Issues
+If the project doesn't build:
+1. **Clean Build**: Product > Clean Build Folder (⇧⌘K)
+2. **Xcode Version**: Ensure Xcode 15.0+ is being used
+3. **iOS Version**: Target device must be iOS 17.0+
+
 ## Future Enhancements 🔮
 
 - 🗂️ **Heatmap Implementation**: Actual density visualization
@@ -148,6 +211,22 @@ TheekKaro/
 - **Spring**: Response 0.3, Damping 0.7
 - **Ease**: 150-200ms for state changes
 - **Micro-interactions**: Scale, fade, slide
+
+## Recent Updates 📝
+
+### v1.0.1 - Build Ready & Enhanced UI (July 2025)
+- ✅ **Build Success**: App successfully compiles for iOS device deployment
+- ✅ **UI Improvements**: Enhanced photo capture interface with camera/library fallback
+- ✅ **Better UX**: Added visual feedback for photo capture and validation states
+- ✅ **Production Ready**: All core features implemented and terminal build tested
+- ✅ **Documentation**: Complete build and deployment instructions added
+
+### v1.0 - Initial Release (July 2025)
+- 🎉 **Launch**: Core civic issue reporting functionality
+- 📍 **Maps**: Interactive map with issue pins and filtering
+- 📸 **Photos**: Camera integration for issue documentation
+- 💾 **Storage**: Local JSON persistence with photo management
+- 🔒 **Permissions**: Camera and location access with proper descriptions
 
 ---
 
