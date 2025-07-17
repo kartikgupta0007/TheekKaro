@@ -77,7 +77,7 @@ struct MapHomeView: View {
             }
         }
         .sheet(isPresented: $issueViewModel.showingReportSheet) {
-            ReportSheetView(
+            EnhancedReportSheetView(
                 viewModel: issueViewModel,
                 userLocation: locationManager.userLocation
             )
@@ -141,19 +141,19 @@ struct CategoryFilterChip: View {
                 Image(systemName: category.systemImageName)
                     .font(.system(size: 12))
                 Text(category.displayName)
-                    .font(.caption)
+                    .font(.tkCaption)
                     .fontWeight(.medium)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
             .background(
-                isSelected ? category.color : Color.clear,
+                isSelected ? Color.tkPrimary : Color.clear,
                 in: Capsule()
             )
-            .foregroundColor(isSelected ? .white : .primary)
+            .foregroundColor(isSelected ? Color.tkTextButton : Color.tkTextPrimary)
             .overlay(
                 Capsule()
-                    .stroke(category.color, lineWidth: isSelected ? 0 : 1)
+                    .stroke(Color.tkPrimary, lineWidth: isSelected ? 0 : 1)
             )
         }
         .animation(.easeInOut(duration: 0.15), value: isSelected)
@@ -184,12 +184,12 @@ struct ReportFAB: View {
         Button(action: action) {
             Image(systemName: "plus")
                 .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.white)
+                .foregroundColor(Color.tkTextButton)
                 .frame(width: 60, height: 60)
                 .background(
                     Circle()
-                        .fill(Color.indigo)
-                        .shadow(radius: 8, y: 4)
+                        .fill(Color.tkPrimary)
+                        .shadow(color: Color.tkPrimary.opacity(0.3), radius: 8, y: 4)
                 )
         }
         .scaleEffect(1.0)

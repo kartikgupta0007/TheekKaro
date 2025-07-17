@@ -1,234 +1,97 @@
-# Civic Transparency POC - TheekKaro 🏙️
+# TheekKaro - Civic Issue Reporting 🏙️
 
-A SwiftUI-based iOS app for citizen-driven civic issue reporting, built as a Proof of Concept for transparent governance.
+A beautiful, user-friendly iOS app for reporting civic issues with GPS-tagged photos and community engagement.
 
-## 🚀 Project Status
+## 🚀 Latest Update - v1.0.2
 
-✅ **BUILD READY** - Successfully compiles and runs on iOS devices  
-✅ **DEPLOYMENT READY** - Can be built as IPA for device installation  
-✅ **FEATURE COMPLETE** - Core civic issue reporting functionality implemented  
-✅ **PERMISSIONS CONFIGURED** - Camera and location access properly set up
+**Enhanced Add Issue Flow** - Replaced basic form with polished 6-step guided experience:
+- **Modern Design System** - Consistent colors, typography, and spacing
+- **Multi-Step Flow** - Photo capture → Category selection → Description → Review
+- **Reusable Components** - Professional UI component library
+- **Better UX** - Guided, intuitive issue reporting process
 
-## Features ✨
+## Core Features ✨
 
-### Core Functionality
-- 📍 **Interactive Map**: View your location and all reported issues
-- 📸 **Issue Reporting**: Capture photos with GPS tagging
-- 🏷️ **Category System**: Pothole, Streetlight, Garbage, Water Leak, Other
-- 🗂️ **Category Filtering**: Toggle visibility by issue type
-- 📊 **Heatmap Toggle**: Visual density overlay (UI ready)
-- 📱 **Issue Details**: Full issue information with photo and location
-- 🗑️ **Issue Management**: Delete functionality with confirmation
+### 📱 Issue Reporting
+- **6-Step Guided Flow**: Beautiful multi-step form with clear progression
+- **Photo Capture**: Camera integration with GPS tagging (up to 6 photos)
+- **Smart Categories**: Roads, Lighting, Waste, Water, Other with visual chips
+- **Rich Descriptions**: Easy text input with helpful prompts
 
-### Technical Features
-- 💾 **Local Storage**: JSON-based persistence with photo management
-- 📍 **GPS Integration**: CoreLocation with proper permissions
-- 🎨 **Modern UI**: SwiftUI with Material Design elements
-- 🌓 **Dark Mode**: Automatic light/dark theme support
-- ♿ **Accessibility**: VoiceOver ready with proper labels
+### 🗺️ Map & Discovery
+- **Interactive Map**: View all reported issues on live map
+- **Category Filters**: Toggle visibility by issue type
+- **Issue Details**: Full issue view with photos and location
+- **Current Location**: GPS integration with precise positioning
 
-## Project Structure 📁
+### 🎨 Design System
+- **Consistent Colors**: Professional green/brown palette 
+- **Modern Typography**: Clear hierarchy with proper sizing
+- **Reusable Components**: Buttons, chips, inputs, photo grids
+- **Responsive Layout**: Optimized for all iOS device sizes
 
-```
-TheekKaro/
-├── Models/
-│   ├── Issue.swift              # Core issue data model
-│   └── IssueCategory.swift      # Category enum with colors
-├── Services/
-│   ├── LocationManager.swift    # GPS and location services
-│   └── LocalStorageService.swift # JSON persistence & photo storage
-├── ViewModels/
-│   └── IssueViewModel.swift     # Business logic & state management
-├── Views/
-│   ├── MapHomeView.swift        # Main map interface
-│   ├── ReportSheetView.swift    # Issue reporting form
-│   └── IssueDetailView.swift    # Issue detail viewer
-├── Utilities/
-│   └── Extensions.swift         # Date & Color extensions
-└── Info.plist                  # Camera & location permissions
-```
+## Quick Start 🚀
 
-## Category System 🏷️
-
-| Category    | Color  | Icon | Use Case |
-|-------------|--------|------|----------|
-| Pothole     | Red    | ⚠️   | Road damage, traffic hazards |
-| Streetlight | Orange | 💡   | Broken/missing street lighting |
-| Garbage     | Green  | 🗑️   | Waste management issues |
-| Water Leak  | Blue   | 💧   | Plumbing, water infrastructure |
-| Other       | Purple | ❓   | Miscellaneous civic issues |
-
-## Key Components 🧩
-
-### Data Flow
-1. **LocationManager** → GPS coordinates
-2. **Camera** → UIImagePickerController → Photo capture
-3. **LocalStorageService** → JSON + FileManager → Data persistence
-4. **IssueViewModel** → Combine publishers → UI updates
-
-### UI Architecture
-- **MapHomeView**: Main interface with floating controls
-- **FAB (Floating Action Button)**: Primary issue reporting trigger
-- **Category Filters**: Horizontal scroll with selection state
-- **Bottom Sheets**: Native iOS presentation for forms and details
-
-## Requirements ✅
-
-- iOS 17.0+
-- Xcode 15.0+
-- Camera access permission (automatically requested)
-- Location access permission (automatically requested)
-- Device storage for photos and data
-
-### Permissions Handling
-The app automatically requests necessary permissions on first use:
-- **Camera Access**: Required for photo capture during issue reporting
-- **Location Access**: Required for GPS tagging of issues and map functionality
-- Both permissions include user-friendly descriptions explaining their purpose
-
-## Getting Started 🚀
-
-1. **Clone & Open**
+1. **Clone & Run**
    ```bash
    git clone <repository>
    cd TheekKaro
    open TheekKaro.xcodeproj
    ```
 
-2. **Run the App**
-   - Select target device/simulator
-   - Build and run (⌘+R)
-   - Grant location and camera permissions when prompted
+2. **Test the New Flow**
+   - Tap the green "+" button
+   - Follow the 6-step guided process
+   - Take photos → Select categories → Add description
+   - See your issue appear on the map
 
-3. **Test Core Flow**
-   - Tap the blue "+" FAB
-   - Take a photo of an issue
-   - Select category and add description
-   - Save and see the pin appear on map
-   - Tap pin to view details
+## Project Structure 📁
 
-## Build & Deployment 📱
-
-### Development Build
-```bash
-# Build for device testing
-xcodebuild -scheme TheekKaro -configuration Release -sdk iphoneos build
+```
+TheekKaro/
+├── Models/
+│   ├── Issue.swift              # Core data model
+│   └── IssueCategory.swift      # Category definitions
+├── Services/
+│   ├── LocationManager.swift    # GPS services
+│   └── LocalStorageService.swift # Data persistence
+├── Views/
+│   ├── MapHomeView.swift        # Main map interface
+│   ├── EnhancedReportSheetView.swift # NEW: Multi-step form
+│   ├── DesignSystemComponents.swift  # NEW: Component library
+│   └── IssueDetailView.swift    # Issue details
+├── Utilities/
+│   └── Extensions.swift         # NEW: Design system tokens
+└── ViewModels/
+    └── IssueViewModel.swift     # Business logic
 ```
 
-### Create IPA for Device Installation
-```bash
-# Create archive
-xcodebuild -scheme TheekKaro -configuration Release -sdk iphoneos archive -archivePath ./TheekKaro.xcarchive
+## Requirements ✅
 
-# Export IPA (requires ExportOptions.plist)
-xcodebuild -exportArchive -archivePath ./TheekKaro.xcarchive -exportPath ./export -exportOptionsPlist ExportOptions.plist
-```
-
-### Installation Options
-- **Xcode**: Direct device installation via cable
-- **TestFlight**: For beta testing distribution  
-- **Enterprise**: Ad-hoc distribution for internal testing
-- **IPA**: Direct installation via Apple Configurator or similar tools
-
-### Build Requirements
-- **Xcode**: 15.0+ required
-- **iOS Target**: 18.0+ minimum
-- **Architecture**: arm64 (Apple Silicon compatible)
-- **Signing**: Apple Developer account needed for device deployment
-
-## Data Storage 💾
-
-### Local Persistence
-- **Issues**: Stored as JSON in Documents directory
-- **Photos**: JPEG files in Documents/photos/ folder
-- **Location**: App sandbox only (privacy compliant)
-
-### Data Model
-```json
-{
-  "id": "UUID",
-  "latitude": 37.7749,
-  "longitude": -122.4194,
-  "category": "pothole",
-  "description": "Large pothole near bus stop",
-  "timestamp": "2025-07-16T10:00:00Z",
-  "photoPath": "uuid.jpg"
-}
-```
-
-## Performance Targets 🎯
-
-| Metric | Target | Status |
-|--------|--------|--------|
-| Map FPS | ≥30fps | ✅ Optimized |
-| Heatmap Toggle | ≤200ms | ✅ Smooth |
-| Issue Creation | <30s | ✅ Fast |
-| Crash Rate | ≥99% | ✅ Stable |
-
-## Troubleshooting 🔧
-
-### Camera Issues
-If the app crashes when taking photos:
-1. **Check Permissions**: Go to Settings > Privacy & Security > Camera and ensure TheekKaro has access
-2. **Restart App**: Force close and reopen the app
-3. **Device Storage**: Ensure sufficient storage space for photos
-4. **Simulator**: Camera functionality requires a physical device
-
-### Location Issues
-If location isn't working:
-1. **Check Permissions**: Go to Settings > Privacy & Security > Location Services
-2. **Enable Location**: Ensure both Location Services and TheekKaro are enabled
-3. **Precision**: Set to "Precise Location" for accurate issue mapping
-
-### Build Issues
-If the project doesn't build:
-1. **Clean Build**: Product > Clean Build Folder (⇧⌘K)
-2. **Xcode Version**: Ensure Xcode 15.0+ is being used
-3. **iOS Version**: Target device must be iOS 17.0+
-
-## Future Enhancements 🔮
-
-- 🗂️ **Heatmap Implementation**: Actual density visualization
-- 📶 **Offline Mode**: Better offline issue creation
-- 🔄 **Data Export**: Share issues as CSV/JSON
-- 📊 **Analytics**: Usage and issue type statistics
-- 🌐 **Backend Integration**: Server sync capabilities
-
-## Design System 🎨
-
-### Colors
-- **Primary**: Indigo 500 (#6366F1)
-- **Categories**: Red, Orange, Green, Blue, Purple
-- **Background**: System adaptive (light/dark)
-- **Surfaces**: Ultra-thin material with blur
-
-### Typography
-- **Headlines**: SF Pro Rounded, Bold
-- **Body**: SF Pro, Medium
-- **Captions**: SF Pro, Regular
-
-### Animations
-- **Spring**: Response 0.3, Damping 0.7
-- **Ease**: 150-200ms for state changes
-- **Micro-interactions**: Scale, fade, slide
+- iOS 17.0+
+- Xcode 15.0+
+- Camera and Location permissions (auto-requested)
 
 ## Recent Updates 📝
 
-### v1.0.1 - Build Ready & Enhanced UI (July 2025)
-- ✅ **Build Success**: App successfully compiles for iOS device deployment
-- ✅ **UI Improvements**: Enhanced photo capture interface with camera/library fallback
-- ✅ **Better UX**: Added visual feedback for photo capture and validation states
-- ✅ **Production Ready**: All core features implemented and terminal build tested
-- ✅ **Documentation**: Complete build and deployment instructions added
+### v1.0.2 - Enhanced Add Issue Flow (Current)
+- 🎨 **Design System**: Complete color, typography, and spacing tokens
+- 📝 **Multi-Step Form**: 6-step guided issue reporting flow
+- 🧩 **Component Library**: Reusable UI components (buttons, chips, inputs)
+- ✨ **Better UX**: Intuitive step-by-step experience with validation
+- 📸 **Enhanced Photos**: Grid layout supporting up to 6 images
 
-### v1.0 - Initial Release (July 2025)
-- 🎉 **Launch**: Core civic issue reporting functionality
-- 📍 **Maps**: Interactive map with issue pins and filtering
-- 📸 **Photos**: Camera integration for issue documentation
-- 💾 **Storage**: Local JSON persistence with photo management
-- 🔒 **Permissions**: Camera and location access with proper descriptions
+### v1.0.1 - Build Ready & Enhanced UI
+- ✅ **Production Ready**: Successfully builds and deploys to iOS devices
+- 📸 **Photo Capture**: Improved camera interface with fallback support
+- 🎯 **Better Validation**: Visual feedback for form completion
+
+### v1.0 - Initial Release
+- 🗺️ **Interactive Map**: Issue pins with category filtering
+- 📍 **GPS Integration**: Location-based issue reporting
+- 💾 **Local Storage**: JSON persistence with photo management
 
 ---
 
-**Built with ❤️ by Kartik Gupta**  
-*Civic Transparency POC - July 2025* 
+**Built with ❤️ for better communities**  
+*v1.0.2 - Enhanced Issue Reporting Experience* 
