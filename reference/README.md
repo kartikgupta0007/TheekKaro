@@ -1,160 +1,132 @@
-# TheekKaro Reference Documentation
+# TheekKaro 🏙️
 
-This folder contains comprehensive documentation about the TheekKaro civic transparency iOS app. These files provide context and detailed information to help understand the project's purpose, architecture, and implementation.
+*Because our cities deserve better, and every citizen should have a voice.*
 
-## 📚 **Documentation Index**
+## What is TheekKaro?
 
-### 🎯 **[project-overview.md](./project-overview.md)**
-**High-level project summary and vision**
-- App purpose and goals
-- Target users and use cases  
-- Current build status
-- Success metrics
-- Future roadmap
+TheekKaro is an iOS app that makes reporting civic issues as easy as taking a photo. Spotted a pothole? Broken streetlight? Just snap, tag, and it's documented with GPS precision. 
 
-*Start here for a complete understanding of what TheekKaro does and why.*
+I built this because I was tired of walking past the same broken things every day, feeling helpless about it. Now anyone can be part of fixing their neighborhood.
 
----
+## The Vision
 
-### 🏗️ **[technical-architecture.md](./technical-architecture.md)**
-**Detailed technical implementation guide**
-- MVVM architecture overview
-- Project structure breakdown
-- Data flow patterns
-- Key technical decisions
-- Build configuration
-- Performance considerations
+Imagine if reporting a civic issue took just 30 seconds. Imagine if every citizen could contribute to making their city better with just their phone. That's TheekKaro.
 
-*Essential for understanding how the app is built and architected.*
+**Current Status**: ✅ **Working iOS app** with map, camera, and local storage
 
----
+## What It Does Right Now
 
-### ⚡ **[features-functionality.md](./features-functionality.md)**
-**Complete feature breakdown and user interactions**
-- Interactive map interface
-- Issue reporting system
-- Data management
-- User experience flows
-- Platform integration
-- Planned enhancements
+- **📍 Interactive Map**: See all reported issues on a beautiful map with color-coded categories
+- **📸 Quick Reporting**: Tap the + button, snap a photo, pick a category (pothole, streetlight, garbage, water leak, other)
+- **🗂️ Smart Organization**: Everything is categorized and stored locally on your device
+- **🔒 Privacy First**: No servers, no accounts, your data stays on your phone
 
-*Comprehensive guide to what users can do with the app.*
+## What's Coming Next 1.0.21 🎨
 
----
+I just finished designing a gorgeous 6-step reporting flow in Figma that transforms the basic form into something beautiful:
 
-### 🎨 **[design-system.md](./design-system.md)**
-**Visual design and UI component library**
-- Color palette and brand colors
-- Typography and spacing
-- Component specifications
-- Animation guidelines
-- Accessibility features
-- Responsive design patterns
+1. **Smart Start** - Better way to begin reporting
+2. **Photo Magic** - Enhanced camera experience  
+3. **Easy Tagging** - Beautiful category selection
+4. **Story Time** - Guided description input
+5. **Review & Polish** - See before you submit
+6. **Victory Lap** - Celebrate contribution + sharing as a message
 
-*Everything about how the app looks and feels.*
+The designs are ready, now it's time to build this delightful experience.
 
----
+## Why This Matters
 
-### 🛠️ **[development-notes.md](./development-notes.md)**
-**Build, deployment, and development workflow**
-- Current build status
-- Installation instructions
-- Testing strategy
-- Known issues and limitations
-- Development roadmap
-- Code quality standards
+Every pothole reported is a step toward better roads. Every broken streetlight documented is a push for safer streets. This isn't just an app—it's a way for regular people to have an impact on their community.
 
-*Practical information for building and maintaining the app.*
+## Tech Stack
 
----
+- **iOS 17+** with SwiftUI
+- **MapKit** for beautiful maps
+- **Local storage** for privacy
+- **No external dependencies** - pure iOS
 
-## 🚀 **Quick Start Guide**
+## Design System Colors 🎨
 
-### **For Understanding the Project**
-1. Read **project-overview.md** for the big picture
-2. Review **features-functionality.md** to see what it does
-3. Check **development-notes.md** for current status
+Based on the Figma design system, here are the core colors for TheekKaro:
 
-### **For Technical Implementation**
-1. Study **technical-architecture.md** for system design
-2. Reference **design-system.md** for UI implementation
-3. Follow **development-notes.md** for build instructions
+### Neutral & Base Colors
+- **Light Gray**: `#F5F5F0` - Background, subtle surfaces
+- **Warm Cream**: `#F9F3D1` - Accent backgrounds, highlights
+- **Sage Green**: `#6B7A47` - Secondary actions, nature elements
+- **Forest Green**: `#3D4A2B` - Primary text, strong accents
 
-### **For Design and UX**
-1. Start with **design-system.md** for visual guidelines
-2. Review **features-functionality.md** for user flows
-3. See **project-overview.md** for user personas
+### Warm Accent Colors  
+- **Soft Beige**: `#E8D5B7` - Warm neutrals, card backgrounds
+- **Peachy Orange**: `#D4956A` - Friendly CTAs, notifications
+- **Vibrant Orange**: `#C17B3A` - Primary buttons, active states
+- **Deep Rust**: `#A0602A` - Emphasis, important actions
 
----
+These colors create a warm, approachable feel that makes civic engagement feel welcoming rather than bureaucratic.
 
-## 📱 **Project Summary**
+## Design System Components 🧩
 
-**TheekKaro** is a SwiftUI-based iOS app for citizen-driven civic issue reporting. Built as a Proof of Concept, it enables users to document infrastructure problems (potholes, streetlights, garbage, etc.) with photos and GPS coordinates on an interactive map.
+### Typography System
+- **Headlines & Large Text**: Raleway (warm, friendly headings)
+- **Body & Interface Text**: SF Pro (clean, readable iOS standard)
 
-### **Key Highlights**
-- ✅ **Build Ready**: Compiles and runs on iOS devices
-- 🗺️ **Interactive Maps**: MapKit integration with category-coded pins
-- 📸 **Photo Documentation**: Camera integration with local storage
-- 🏷️ **Category System**: 5 civic issue types with color coding
-- 💾 **Privacy-First**: Local JSON storage, no backend required
-- 🎨 **Modern UI**: SwiftUI with Material Design elements
+### Core Components
 
-### **Technology Stack**
-- **Platform**: iOS 17.0+, Universal (iPhone/iPad)
-- **Language**: Swift 5.0
-- **UI Framework**: SwiftUI
-- **Architecture**: MVVM with Combine
-- **Storage**: Local JSON + FileManager
-- **Maps**: MapKit with CoreLocation
+#### 🔘 Central Button
+Primary action buttons in multiple states:
+- **Primary**: Forest Green (`#3D4A2B`) with white text and share icon
+- **Secondary**: Sage Green (`#6B7A47`) with white text
+- **Large**: Full-width for primary actions like "Submit Report"
+- **Compact**: Smaller variant for secondary actions
 
----
+#### 📍 Location Component
+- **Display**: "123, Sector 11, Gurugram" format
+- **Interactive**: Dropdown for location selection/editing
+- **Styling**: Clean text with subtle dropdown indicator
 
-## 🎯 **Use Cases**
+#### 📝 Text Input Areas
+- **Long Description**: Multi-line text areas for detailed reporting
+- **Placeholder Examples**: 
+  - "I felt worried when I saw..."
+  - "I felt worried when I saw that this road after the last rain is now completely broken. This isn't okay to commute over daily."
+- **Styling**: Clean borders, comfortable padding
 
-### **For Developers**
-- Understanding SwiftUI + MapKit integration
-- Local storage patterns with photo management
-- MVVM architecture with Combine publishers
-- iOS permission handling (camera, location)
+#### 🏷️ Category Chips (Chip1)
+- **States**: Selected (filled) and unselected (outlined)
+- **Colors**: Using sage green from palette
+- **Examples**: "Garbage" and other issue categories
+- **Interactive**: Toggle selection with smooth transitions
 
-### **For Designers**
-- Civic app design patterns
-- Category-based color systems
-- Map interface design
-- Accessibility implementation
+#### 🖼️ Photo Components
+- **Photo Uploader**: Square format with camera icon
+- **Image Carousel**: Grid layout for multiple photo selection
+- **States**: Empty, uploading, and filled with actual photos
+- **Constraint**: "You can add upto 6 photos"
+- **Real Photo Example**: Shows actual pothole/road damage photos
 
-### **For Product Managers**
-- Civic transparency app features
-- User journey mapping
-- Privacy-first approach benefits
-- Government partnership opportunities
+#### 📋 Section Headers & Content
+- **Page Header**: "You saw it, you felt it. Now share it." (Raleway, large)
+- **Section Header**: "Capture the situation" (clear hierarchy)
+- **Section Description**: "Choose as many tags as you need—every detail counts"
+- **Caption Text**: Helpful hints like photo limits
+
+#### ⚡ Action Elements
+- **Bottom Button**: Persistent action for key flows
+- **Icon Buttons**: Small interactive elements with X/close functionality
+- **Maybe Later**: Secondary action option in warm orange
+
+### Component Principles
+- **Consistency**: All components use the warm earth-tone color palette
+- **Accessibility**: Clear contrast ratios and touch targets
+- **Hierarchy**: Raleway for impact, SF Pro for clarity
+- **Real Content**: Components show actual use cases (Gurugram location, road damage photos)
+
+## Getting Started
+
+1. Open in Xcode 15+
+2. Build and run on iOS device
+3. Grant camera and location permissions
+4. Start making your neighborhood better!
 
 ---
 
-## 📝 **Document Maintenance**
-
-These reference documents are maintained alongside the codebase and should be updated when:
-
-- **New features** are added or modified
-- **Architecture changes** are implemented  
-- **Design system** components are updated
-- **Build process** or requirements change
-- **Development workflow** evolves
-
----
-
-## 🔗 **Related Files**
-
-### **Project Root**
-- `README.md` - Main project documentation
-- `Info.plist` - App configuration and permissions
-
-### **Source Code**
-- `TheekKaro/` - Main application code
-- `TheekKaroTests/` - Unit test suite
-- `TheekKaroUITests/` - UI automation tests
-
----
-
-*Reference Documentation v1.0 | Last Updated: July 2025*
-*Built with ❤️ by Kartik Gupta* 
+*Built with ❤️ by someone who believes citizens can change their cities, one report at a time.* 
